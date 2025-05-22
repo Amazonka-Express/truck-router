@@ -1,0 +1,15 @@
+[package]
+name = "truck-router"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ch-router = "0.1.0"
+kd-tree = "0.6.1"
+prost = "0.13.5"
+tokio = { version = "1.44.2", features = ["rt-multi-thread"] }
+tonic = "0.13.0"
+typenum = "1.18.0"
+
+[build-dependencies]
+tonic-build = "0.13.0"

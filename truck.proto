@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package truck;
+
+service TruckRouter {
+    rpc GetRoute(RouteRequest) returns (Route);
+}
+
+message Route {
+    repeated RouteNode coordinates = 1;
+}
+
+message RouteNode {
+    Coordinates coordinates = 1;
+    optional uint32 stop_index = 2;
+}
+
+message Coordinates {
+    float latitude = 1;
+    float longitude = 2;
+}
+
+message RouteRequest {
+    repeated Coordinates coordinates = 1;
+}
