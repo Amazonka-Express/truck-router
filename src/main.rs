@@ -132,7 +132,7 @@ fn load_points() -> Vec<Coordinates> {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let addr = "[::1]:50051".parse().unwrap();
+    let addr = "0.0.0.0:50051".parse().unwrap();
 
     let points = load_points();
 
