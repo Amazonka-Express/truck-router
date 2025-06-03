@@ -1,0 +1,5 @@
+services:
+  truck-router:
+    build: .
+    ports:
+      - "50051:50051"
