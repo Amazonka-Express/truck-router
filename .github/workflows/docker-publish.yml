@@ -1,0 +1,31 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Log in to Docker Hub
+        env:
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER }}
+          DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        run: echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USER" --password-stdin
+      
+      - name: Build Docker image
+        env:
+          IMAGE_NAME: "mnowerty/ersms-truck-router"
+        run: |
+          docker build -t $IMAGE_NAME:latest .
+      
+      - name: Push Docker image
+        env:
+          IMAGE_NAME: "mnowerty/ersms-truck-router"
+        run: |
+          docker push $IMAGE_NAME:latest
